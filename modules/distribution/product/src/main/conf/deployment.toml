@@ -159,7 +159,7 @@ https_endpoint = "https://localhost:${https.nio.port}"
 [apim.cors]
 allow_origins = "*"
 allow_methods = ["GET","PUT","POST","DELETE","PATCH","OPTIONS"]
-allow_headers = ["authorization","Access-Control-Allow-Origin","Content-Type","SOAPAction","apikey"]
+allow_headers = ["authorization","Access-Control-Allow-Origin","Content-Type","SOAPAction","apikey", "testKey"]
 allow_credentials = false
 
 #[apim.throttling]
@@ -254,7 +254,7 @@ type = "org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"
 name = "org.wso2.is.notification.ApimOauthEventInterceptor"
 order = 1
 [event_listener.properties]
-notification_endpoint = "https://localhost:${https.nio.port}/notify"
+notification_endpoint = "https://localhost:${mgt.transport.https.port}/internal/data/v1/notify"
 username = "${admin.username}"
 password = "${admin.password}"
 'header.X-WSO2-KEY-MANAGER' = "default"

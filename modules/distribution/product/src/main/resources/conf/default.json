@@ -228,6 +228,17 @@
   "transport.client.https.properties.Transfer-Encoding": "chunked",
   "transport.client.https.properties.SO_TIMEOUT": "60000",
   "transport.client.https.properties.CONNECTION_TIMEOUT": "60000",
+  "database.local.url": "jdbc:h2:./repository/database/WSO2CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;MVCC=TRUE",
+  "database.local.username": "wso2carbon",
+  "database.local.password": "wso2carbon",
+  "database.local.driver": "org.h2.Driver",
+  "database.local.validationQuery": "SELECT 1",
+  "database.local.pool_options.maxActive": "50",
+  "database.local.pool_options.maxWait": "60000",
+  "database.local.pool_options.testOnBorrow": "true",
+  "database.local.pool_options.validationInterval": "30000",
+  "database.local.pool_options.defaultAutoCommit": "true",
+  "apim.auth_manager.service_url" : "https://localhost:${mgt.transport.https.port}${carbon.context}services/",
   "config_data.overwrite": "true",
   "governance_data.overwrite": "true",
   "static_configuration.versioning_properties.enable": false,
@@ -251,22 +262,29 @@
     "/api/users/v2/me/webauthn",
     "/api/",
     "/user-portal/",
-    "/user-info/"
+    "/keymanager-operations/"
   ],
   "resource.access_control": [
     {
-      "context" : "(.*)/user-info/claims(.*)",
+      "context" : "(.*)/keymanager-operations/user-info/claims(.*)",
       "secure" : true,
       "http_method" : "GET",
       "permissions" : "/permission/admin/manage/identity/usermgt/list",
       "scopes" : "internal_user_mgt_list"
     },
     {
-      "context" : "(.*)/user-info/claims/generate",
+      "context" : "(.*)/keymanager-operations/user-info/claims/generate",
       "secure" : true,
       "http_method" : "POST",
       "permissions" : "/permission/admin/manage/identity/usermgt/list",
       "scopes" : "internal_user_mgt_list"
+    },
+    {
+      "context" : "(.*)/keymanager-operations/dcr/register",
+      "secure" : true,
+      "http_method" : "POST",
+      "permissions" : "/permission/admin/manage/identity/applicationmgt/create",
+      "scopes" : "internal_application_mgt_create"
     }
   ]
 }
