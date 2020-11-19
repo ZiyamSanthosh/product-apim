@@ -155,6 +155,9 @@
                                     org.wso2.carbon.apimgt:org.wso2.carbon.apimgt.jms.listener.feature:${carbon.apimgt.version}
                                 </featureArtifactDef>
                                 <featureArtifactDef>
+                                    org.wso2.carbon.apimgt:org.wso2.carbon.apimgt.throttle.policy.deployer.feature:${carbon.apimgt.version}
+                                </featureArtifactDef>
+                                <featureArtifactDef>
                                     org.wso2.carbon.apimgt:org.wso2.carbon.apimgt.scxml.feature:${carbon.apimgt.version}
                                 </featureArtifactDef>
 
@@ -186,6 +189,10 @@
 
                                 <featureArtifactDef>
                                     org.wso2.carbon.identity.framework:org.wso2.carbon.security.mgt.server.feature:${carbon.identity.version}
+                                </featureArtifactDef>
+
+                                <featureArtifactDef>
+                                    org.wso2.carbon.identity.framework:org.wso2.carbon.identity.role.mgt.core.server.feature:${carbon.identity.version}
                                 </featureArtifactDef>
 
                                 <featureArtifactDef>
@@ -313,7 +320,9 @@
                                 <featureArtifactDef>
                                     org.wso2.am:org.wso2.am.multitenancy.dashboard.ui.feature:${apimserver.version}
                                 </featureArtifactDef>
-
+                                <featureArtifactDef>
+                                    org.wso2.carbon.apimgt:org.wso2.carbon.apimgt.cache.invalidation.feature:${carbon.apimgt.version}
+                                </featureArtifactDef>
                                 <!-- Registry Features -->
 
                                 <featureArtifactDef>
@@ -641,7 +650,21 @@
                                 <featureArtifactDef>
                                     org.wso2.km.ext.keycloak:keycloak.key.manager.feature:${keycloak.keymanager.feature.version}
                                 </featureArtifactDef>
+                                <!-- Auth0 KeyManager Feature -->
+                                <featureArtifactDef>
+                                    org.wso2.km.ext.auth0:auth0.key.manager.feature:${auth0.keymanager.feature.version}
+                                </featureArtifactDef>
+                                <!-- PingFederate KeyManager Feature -->
+                                <featureArtifactDef>
+                                    org.wso2.km.ext.pingfederate:pingfederate.key.manager.feature:${pingfederate.keymanager.feature.version}
+                                </featureArtifactDef>
 
+                                <featureArtifactDef>
+                                    org.wso2.carbon.identity.inbound.auth.sts:org.wso2.carbon.sts.connector.feature:${carbon.identity-inbound-auth-sts.version}
+                                </featureArtifactDef>
+                                <featureArtifactDef>
+                                    org.wso2.carbon.identity.framework:org.wso2.carbon.identity.user.functionality.mgt.feature:${carbon.identity.version}
+                                </featureArtifactDef>
                             </featureArtifacts>
                         </configuration>
                     </execution>
@@ -1262,6 +1285,14 @@
                                     <id>org.wso2.carbon.apimgt.jms.listener.feature.group</id>
                                     <version>${carbon.apimgt.version}</version>
                                 </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.apimgt.cache.invalidation.feature.group</id>
+                                    <version>${carbon.apimgt.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.apimgt.throttle.policy.deployer.feature.group</id>
+                                    <version>${carbon.apimgt.version}</version>
+                                </feature>
 				                <feature>
                                     <id>org.wso2.carbon.identity.user.profile.feature.group</id>
                                     <version>${carbon.identity.version}</version>
@@ -1393,6 +1424,26 @@
                                 <feature>
                                     <id>keycloak.key.manager.feature.group</id>
                                     <version>${keycloak.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>auth0.key.manager.feature.group</id>
+                                    <version>${auth0.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>pingfederate.key.manager.feature.group</id>
+                                    <version>${pingfederate.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.role.mgt.core.server.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.sts.connector.feature.group</id>
+                                    <version>${carbon.identity-inbound-auth-sts.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.user.functionality.mgt.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
                                 </feature>
                             </features>
                         </configuration>
@@ -1746,6 +1797,10 @@
                                     <version>${carbon.apimgt.version}</version>
                                 </feature>
                                 <feature>
+                                    <id>org.wso2.carbon.apimgt.cache.invalidation.feature.group</id>
+                                    <version>${carbon.apimgt.version}</version>
+                                </feature>
+                                <feature>
                                     <id>org.wso2.carbon.identity.user.profile.feature.group</id>
                                     <version>${carbon.identity.version}</version>
                                 </feature>
@@ -1798,6 +1853,26 @@
                                 <feature>
                                     <id>keycloak.key.manager.feature.group</id>
                                     <version>${keycloak.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>auth0.key.manager.feature.group</id>
+                                    <version>${auth0.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>pingfederate.key.manager.feature.group</id>
+                                    <version>${pingfederate.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.role.mgt.core.server.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.sts.connector.feature.group</id>
+                                    <version>${carbon.identity-inbound-auth-sts.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.user.functionality.mgt.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
                                 </feature>
                             </features>
                         </configuration>
@@ -2125,6 +2200,10 @@
                                     <version>${carbon.apimgt.version}</version>
                                 </feature>
                                 <feature>
+                                    <id>org.wso2.carbon.apimgt.cache.invalidation.feature.group</id>
+                                    <version>${carbon.apimgt.version}</version>
+                                </feature>
+                                <feature>
                                     <id>org.wso2.carbon.identity.data.publisher.application.authentication.server.feature.group</id>
                                     <version>${carbon.identity-data-publisher-application-authentication.version}</version>
                                 </feature>
@@ -2292,6 +2371,26 @@
                                 <feature>
                                     <id>keycloak.key.manager.feature.group</id>
                                     <version>${keycloak.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>auth0.key.manager.feature.group</id>
+                                    <version>${auth0.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>pingfederate.key.manager.feature.group</id>
+                                    <version>${pingfederate.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.role.mgt.core.server.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.sts.connector.feature.group</id>
+                                    <version>${carbon.identity-inbound-auth-sts.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.user.functionality.mgt.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
                                 </feature>
                             </features>
                         </configuration>
@@ -2580,6 +2679,10 @@
                                     <version>${carbon.apimgt.version}</version>
                                 </feature>
                                 <feature>
+                                    <id>org.wso2.carbon.apimgt.cache.invalidation.feature.group</id>
+                                    <version>${carbon.apimgt.version}</version>
+                                </feature>
+                                <feature>
                                     <id>org.wso2.carbon.apimgt.rest.api.publisher.feature.group</id>
                                     <version>${carbon.apimgt.version}</version>
                                 </feature>
@@ -2752,6 +2855,26 @@
                                 <feature>
                                     <id>keycloak.key.manager.feature.group</id>
                                     <version>${keycloak.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>auth0.key.manager.feature.group</id>
+                                    <version>${auth0.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>pingfederate.key.manager.feature.group</id>
+                                    <version>${pingfederate.keymanager.feature.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.role.mgt.core.server.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.sts.connector.feature.group</id>
+                                    <version>${carbon.identity-inbound-auth-sts.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.user.functionality.mgt.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
                                 </feature>
                             </features>
                         </configuration>
@@ -3123,6 +3246,10 @@
                                     <id>org.wso2.carbon.apimgt.jms.listener.feature.group</id>
                                     <version>${carbon.apimgt.version}</version>
                                 </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.apimgt.cache.invalidation.feature.group</id>
+                                    <version>${carbon.apimgt.version}</version>
+                                </feature>
 				                <feature>
                                     <id>org.wso2.carbon.webapp.mgt.server.feature.group</id>
                                     <version>${carbon.deployment.version}</version>
@@ -3181,6 +3308,18 @@
                                 <feature>
                                     <id>wso2is.key.manager.notification.feature.group</id>
                                     <version>${wso2is.km.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.role.mgt.core.server.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.sts.connector.feature.group</id>
+                                    <version>${carbon.identity-inbound-auth-sts.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.user.functionality.mgt.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
                                 </feature>
                             </features>
                         </configuration>
@@ -3481,6 +3620,22 @@
                                 <feature>
                                     <id>org.wso2.carbon.apimgt.internal.service.feature.group</id>
                                     <version>${carbon.apimgt.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.apimgt.throttle.policy.deployer.feature.group</id>
+                                    <version>${carbon.apimgt.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.role.mgt.core.server.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.sts.connector.feature.group</id>
+                                    <version>${carbon.identity-inbound-auth-sts.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.identity.user.functionality.mgt.feature.group</id>
+                                    <version>${carbon.identity.version}</version>
                                 </feature>
                             </features>
                         </configuration>
