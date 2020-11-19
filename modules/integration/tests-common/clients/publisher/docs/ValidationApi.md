@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apisValidateGraphqlSchemaPost**](ValidationApi.md#apisValidateGraphqlSchemaPost) | **POST** /apis/validate-graphql-schema | Validate GraphQL API definition and retrieve a summary
 [**validateAPI**](ValidationApi.md#validateAPI) | **POST** /apis/validate | Check given API attibute name is already exist.
+[**validateAsyncAPISpecification**](ValidationApi.md#validateAsyncAPISpecification) | **POST** /apis/validate-asyncapi | Validate an AsyncAPI Specification
 [**validateEndpoint**](ValidationApi.md#validateEndpoint) | **POST** /apis/validate-endpoint | Check whether given endpoint url is valid
 [**validateOpenAPIDefinition**](ValidationApi.md#validateOpenAPIDefinition) | **POST** /apis/validate-openapi | Validate an OpenAPI Definition
 [**validateWSDLDefinition**](ValidationApi.md#validateWSDLDefinition) | **POST** /apis/validate-wsdl | Validate a WSDL Definition
@@ -116,6 +117,63 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="validateAsyncAPISpecification"></a>
+# **validateAsyncAPISpecification**
+> AsyncAPISpecificationValidationResponseDTO validateAsyncAPISpecification(url, file, returnContent)
+
+Validate an AsyncAPI Specification
+
+This operation can be used to validate and AsyncAPI Specification and retrieve a summary. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition.
+
+### Example
+```java
+// Import classes:
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ValidationApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ValidationApi apiInstance = new ValidationApi();
+String url = "url_example"; // String | AsyncAPI specification url
+File file = new File("/path/to/file.txt"); // File | AsyncAPI specification as a file
+Boolean returnContent = false; // Boolean | Specify whether to return the full content of the AsyncAPI specification in the response. This is only applicable when using url based validation
+try {
+    AsyncAPISpecificationValidationResponseDTO result = apiInstance.validateAsyncAPISpecification(url, file, returnContent);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ValidationApi#validateAsyncAPISpecification");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **url** | **String**| AsyncAPI specification url | [optional]
+ **file** | **File**| AsyncAPI specification as a file | [optional]
+ **returnContent** | **Boolean**| Specify whether to return the full content of the AsyncAPI specification in the response. This is only applicable when using url based validation | [optional] [default to false]
+
+### Return type
+
+[**AsyncAPISpecificationValidationResponseDTO**](AsyncAPISpecificationValidationResponseDTO.md)
+
+### Authorization
+
+[OAuth2Security](../README.md#OAuth2Security)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 <a name="validateEndpoint"></a>

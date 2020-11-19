@@ -4,6 +4,8 @@ All URIs are relative to *https://apis.wso2.com/api/am/publisher/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apisApiIdAsyncapiGet**](ApIsApi.md#apisApiIdAsyncapiGet) | **GET** /apis/{apiId}/asyncapi | Get AsyncAPI definition
+[**apisApiIdAsyncapiPut**](ApIsApi.md#apisApiIdAsyncapiPut) | **PUT** /apis/{apiId}/asyncapi | Update AsyncAPI definition
 [**apisApiIdDelete**](ApIsApi.md#apisApiIdDelete) | **DELETE** /apis/{apiId} | Delete an API
 [**apisApiIdGet**](ApIsApi.md#apisApiIdGet) | **GET** /apis/{apiId} | Get details of an API
 [**apisApiIdPut**](ApIsApi.md#apisApiIdPut) | **PUT** /apis/{apiId} | Update an API
@@ -20,11 +22,128 @@ Method | HTTP request | Description
 [**getGeneratedMockScriptsOfAPI**](ApIsApi.md#getGeneratedMockScriptsOfAPI) | **GET** /apis/{apiId}/generated-mock-scripts | Generate mock response payloads
 [**getWSDLInfoOfAPI**](ApIsApi.md#getWSDLInfoOfAPI) | **GET** /apis/{apiId}/wsdl-info | Get WSDL definition
 [**getWSDLOfAPI**](ApIsApi.md#getWSDLOfAPI) | **GET** /apis/{apiId}/wsdl | Get WSDL definition
+[**importAsyncAPISpecification**](ApIsApi.md#importAsyncAPISpecification) | **POST** /apis/import-asyncapi | import an AsyncAPI Specification
 [**importOpenAPIDefinition**](ApIsApi.md#importOpenAPIDefinition) | **POST** /apis/import-openapi | Import an OpenAPI Definition
 [**importWSDLDefinition**](ApIsApi.md#importWSDLDefinition) | **POST** /apis/import-wsdl | Import a WSDL Definition
 [**updateAPIThumbnail**](ApIsApi.md#updateAPIThumbnail) | **PUT** /apis/{apiId}/thumbnail | Upload a thumbnail image
 [**updateWSDLOfAPI**](ApIsApi.md#updateWSDLOfAPI) | **PUT** /apis/{apiId}/wsdl | Update WSDL definition
 
+
+<a name="apisApiIdAsyncapiGet"></a>
+# **apisApiIdAsyncapiGet**
+> String apisApiIdAsyncapiGet(apiId, ifNoneMatch)
+
+Get AsyncAPI definition
+
+This operation can be used to retrieve the AsyncAPI definition of an API. 
+
+### Example
+```java
+// Import classes:
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ApIsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ApIsApi apiInstance = new ApIsApi();
+String apiId = "apiId_example"; // String | **API ID** consisting of the **UUID** of the API. 
+String ifNoneMatch = "ifNoneMatch_example"; // String | Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resource. 
+try {
+    String result = apiInstance.apisApiIdAsyncapiGet(apiId, ifNoneMatch);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ApIsApi#apisApiIdAsyncapiGet");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **apiId** | **String**| **API ID** consisting of the **UUID** of the API.  |
+ **ifNoneMatch** | **String**| Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resource.  | [optional]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[OAuth2Security](../README.md#OAuth2Security)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="apisApiIdAsyncapiPut"></a>
+# **apisApiIdAsyncapiPut**
+> String apisApiIdAsyncapiPut(apiId, apiDefinition, url, file, ifMatch)
+
+Update AsyncAPI definition
+
+This operation can be used to update the AsyncAPI definition of an existing API. AsyncAPI definition to be updated is passed as a form data parameter &#39;apiDefinition&#39;. 
+
+### Example
+```java
+// Import classes:
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ApIsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ApIsApi apiInstance = new ApIsApi();
+String apiId = "apiId_example"; // String | **API ID** consisting of the **UUID** of the API. 
+String apiDefinition = "apiDefinition_example"; // String | AsyncAPI definition of the API
+String url = "url_example"; // String | AsyncAPI definition URL of the API
+File file = new File("/path/to/file.txt"); // File | AsyncAPI definition as a file
+String ifMatch = "ifMatch_example"; // String | Validator for conditional requests; based on ETag. 
+try {
+    String result = apiInstance.apisApiIdAsyncapiPut(apiId, apiDefinition, url, file, ifMatch);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ApIsApi#apisApiIdAsyncapiPut");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **apiId** | **String**| **API ID** consisting of the **UUID** of the API.  |
+ **apiDefinition** | **String**| AsyncAPI definition of the API | [optional]
+ **url** | **String**| AsyncAPI definition URL of the API | [optional]
+ **file** | **File**| AsyncAPI definition as a file | [optional]
+ **ifMatch** | **String**| Validator for conditional requests; based on ETag.  | [optional]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[OAuth2Security](../README.md#OAuth2Security)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
 
 <a name="apisApiIdDelete"></a>
 # **apisApiIdDelete**
@@ -932,6 +1051,63 @@ null (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: application/json, application/wsdl, application/zip
+
+<a name="importAsyncAPISpecification"></a>
+# **importAsyncAPISpecification**
+> APIDTO importAsyncAPISpecification(file, url, additionalProperties)
+
+import an AsyncAPI Specification
+
+This operation can be used to create and API from the AsyncAPI Specification. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition. Specify additionalProperties with **at least** API&#39;s name, version, context and endpointConfig.
+
+### Example
+```java
+// Import classes:
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ApIsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ApIsApi apiInstance = new ApIsApi();
+File file = new File("/path/to/file.txt"); // File | Definition to upload as a file
+String url = "url_example"; // String | Definition url
+String additionalProperties = "additionalProperties_example"; // String | Additional attributes specified as a stringified JSON with API's schema
+try {
+    APIDTO result = apiInstance.importAsyncAPISpecification(file, url, additionalProperties);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ApIsApi#importAsyncAPISpecification");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **File**| Definition to upload as a file | [optional]
+ **url** | **String**| Definition url | [optional]
+ **additionalProperties** | **String**| Additional attributes specified as a stringified JSON with API&#39;s schema | [optional]
+
+### Return type
+
+[**APIDTO**](APIDTO.md)
+
+### Authorization
+
+[OAuth2Security](../README.md#OAuth2Security)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
 
 <a name="importOpenAPIDefinition"></a>
 # **importOpenAPIDefinition**

@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import org.wso2.am.integration.clients.publisher.api.v1.dto.ApiEndpointValidationResponseDTO;
+import org.wso2.am.integration.clients.publisher.api.v1.dto.AsyncAPISpecificationValidationResponseDTO;
 import org.wso2.am.integration.clients.publisher.api.v1.dto.ErrorDTO;
 import java.io.File;
 import org.wso2.am.integration.clients.publisher.api.v1.dto.GraphQLValidationResponseDTO;
@@ -307,6 +308,137 @@ public class ValidationApi {
 
         com.squareup.okhttp.Call call = validateAPIValidateBeforeCall(query, ifNoneMatch, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for validateAsyncAPISpecification
+     * @param url AsyncAPI specification url (optional)
+     * @param file AsyncAPI specification as a file (optional)
+     * @param returnContent Specify whether to return the full content of the AsyncAPI specification in the response. This is only applicable when using url based validation (optional, default to false)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call validateAsyncAPISpecificationCall(String url, File file, Boolean returnContent, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/apis/validate-asyncapi";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (returnContent != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("returnContent", returnContent));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (url != null)
+        localVarFormParams.put("url", url);
+        if (file != null)
+        localVarFormParams.put("file", file);
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2Security" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call validateAsyncAPISpecificationValidateBeforeCall(String url, File file, Boolean returnContent, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+
+        com.squareup.okhttp.Call call = validateAsyncAPISpecificationCall(url, file, returnContent, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Validate an AsyncAPI Specification
+     * This operation can be used to validate and AsyncAPI Specification and retrieve a summary. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition.
+     * @param url AsyncAPI specification url (optional)
+     * @param file AsyncAPI specification as a file (optional)
+     * @param returnContent Specify whether to return the full content of the AsyncAPI specification in the response. This is only applicable when using url based validation (optional, default to false)
+     * @return AsyncAPISpecificationValidationResponseDTO
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public AsyncAPISpecificationValidationResponseDTO validateAsyncAPISpecification(String url, File file, Boolean returnContent) throws ApiException {
+        ApiResponse<AsyncAPISpecificationValidationResponseDTO> resp = validateAsyncAPISpecificationWithHttpInfo(url, file, returnContent);
+        return resp.getData();
+    }
+
+    /**
+     * Validate an AsyncAPI Specification
+     * This operation can be used to validate and AsyncAPI Specification and retrieve a summary. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition.
+     * @param url AsyncAPI specification url (optional)
+     * @param file AsyncAPI specification as a file (optional)
+     * @param returnContent Specify whether to return the full content of the AsyncAPI specification in the response. This is only applicable when using url based validation (optional, default to false)
+     * @return ApiResponse&lt;AsyncAPISpecificationValidationResponseDTO&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<AsyncAPISpecificationValidationResponseDTO> validateAsyncAPISpecificationWithHttpInfo(String url, File file, Boolean returnContent) throws ApiException {
+        com.squareup.okhttp.Call call = validateAsyncAPISpecificationValidateBeforeCall(url, file, returnContent, null, null);
+        Type localVarReturnType = new TypeToken<AsyncAPISpecificationValidationResponseDTO>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Validate an AsyncAPI Specification (asynchronously)
+     * This operation can be used to validate and AsyncAPI Specification and retrieve a summary. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition.
+     * @param url AsyncAPI specification url (optional)
+     * @param file AsyncAPI specification as a file (optional)
+     * @param returnContent Specify whether to return the full content of the AsyncAPI specification in the response. This is only applicable when using url based validation (optional, default to false)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call validateAsyncAPISpecificationAsync(String url, File file, Boolean returnContent, final ApiCallback<AsyncAPISpecificationValidationResponseDTO> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = validateAsyncAPISpecificationValidateBeforeCall(url, file, returnContent, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<AsyncAPISpecificationValidationResponseDTO>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**

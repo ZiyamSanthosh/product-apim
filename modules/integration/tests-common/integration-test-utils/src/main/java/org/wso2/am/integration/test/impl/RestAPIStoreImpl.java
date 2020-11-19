@@ -1808,4 +1808,11 @@ public class RestAPIStoreImpl {
         }
         return response;
     }
+
+    public String getAsyncAPIById(String apiId, String tenantDomain) throws ApiException {
+        ApiResponse<String> response =
+                apIsApi.apisApiIdAsyncapiGetWithHttpInfo(apiId, null, "Production and Sandbox", null, tenantDomain);
+        Assert.assertEquals(HttpStatus.SC_OK, response.getStatusCode());
+        return response.getData();
+    }
 }

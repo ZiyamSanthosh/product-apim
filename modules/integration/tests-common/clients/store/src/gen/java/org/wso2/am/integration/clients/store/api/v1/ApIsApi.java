@@ -58,6 +58,153 @@ public class ApIsApi {
     }
 
     /**
+     * Build call for apisApiIdAsyncapiGet
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param labelName Name of the API microgateway labels  (optional)
+     * @param environmentName Name of the API gateway environment.  (optional)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resourec.  (optional)
+     * @param xWSO2Tenant For cross-tenant invocations, this is used to specify the tenant domain, where the resource need to be   retirieved from.  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call apisApiIdAsyncapiGetCall(String apiId, String labelName, String environmentName, String ifNoneMatch, String xWSO2Tenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/apis/{apiId}/asyncapi"
+            .replaceAll("\\{" + "apiId" + "\\}", apiClient.escapeString(apiId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (labelName != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("labelName", labelName));
+        if (environmentName != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("environmentName", environmentName));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (ifNoneMatch != null)
+        localVarHeaderParams.put("If-None-Match", apiClient.parameterToString(ifNoneMatch));
+        if (xWSO2Tenant != null)
+        localVarHeaderParams.put("X-WSO2-Tenant", apiClient.parameterToString(xWSO2Tenant));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2Security" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call apisApiIdAsyncapiGetValidateBeforeCall(String apiId, String labelName, String environmentName, String ifNoneMatch, String xWSO2Tenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'apiId' is set
+        if (apiId == null) {
+            throw new ApiException("Missing the required parameter 'apiId' when calling apisApiIdAsyncapiGet(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiGetCall(apiId, labelName, environmentName, ifNoneMatch, xWSO2Tenant, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get AsyncAPI definition 
+     * You can use this operation to retrieve the AsyncAPI definition of an API.   &#x60;X-WSO2-Tenant&#x60; header can be used to retrive the AsyncAPI definition an API of a different tenant domain. If not specified super tenant will be used. If Authorization header is present in the request, the user&#39;s tenant associated with the access token will be used.   **NOTE:**  * This operation does not require an Authorization header by default. But in order to see a restricted API&#39;s swagger definition, you need to provide Authorization header. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param labelName Name of the API microgateway labels  (optional)
+     * @param environmentName Name of the API gateway environment.  (optional)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resourec.  (optional)
+     * @param xWSO2Tenant For cross-tenant invocations, this is used to specify the tenant domain, where the resource need to be   retirieved from.  (optional)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String apisApiIdAsyncapiGet(String apiId, String labelName, String environmentName, String ifNoneMatch, String xWSO2Tenant) throws ApiException {
+        ApiResponse<String> resp = apisApiIdAsyncapiGetWithHttpInfo(apiId, labelName, environmentName, ifNoneMatch, xWSO2Tenant);
+        return resp.getData();
+    }
+
+    /**
+     * Get AsyncAPI definition 
+     * You can use this operation to retrieve the AsyncAPI definition of an API.   &#x60;X-WSO2-Tenant&#x60; header can be used to retrive the AsyncAPI definition an API of a different tenant domain. If not specified super tenant will be used. If Authorization header is present in the request, the user&#39;s tenant associated with the access token will be used.   **NOTE:**  * This operation does not require an Authorization header by default. But in order to see a restricted API&#39;s swagger definition, you need to provide Authorization header. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param labelName Name of the API microgateway labels  (optional)
+     * @param environmentName Name of the API gateway environment.  (optional)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resourec.  (optional)
+     * @param xWSO2Tenant For cross-tenant invocations, this is used to specify the tenant domain, where the resource need to be   retirieved from.  (optional)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> apisApiIdAsyncapiGetWithHttpInfo(String apiId, String labelName, String environmentName, String ifNoneMatch, String xWSO2Tenant) throws ApiException {
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiGetValidateBeforeCall(apiId, labelName, environmentName, ifNoneMatch, xWSO2Tenant, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get AsyncAPI definition  (asynchronously)
+     * You can use this operation to retrieve the AsyncAPI definition of an API.   &#x60;X-WSO2-Tenant&#x60; header can be used to retrive the AsyncAPI definition an API of a different tenant domain. If not specified super tenant will be used. If Authorization header is present in the request, the user&#39;s tenant associated with the access token will be used.   **NOTE:**  * This operation does not require an Authorization header by default. But in order to see a restricted API&#39;s swagger definition, you need to provide Authorization header. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param labelName Name of the API microgateway labels  (optional)
+     * @param environmentName Name of the API gateway environment.  (optional)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resourec.  (optional)
+     * @param xWSO2Tenant For cross-tenant invocations, this is used to specify the tenant domain, where the resource need to be   retirieved from.  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call apisApiIdAsyncapiGetAsync(String apiId, String labelName, String environmentName, String ifNoneMatch, String xWSO2Tenant, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiGetValidateBeforeCall(apiId, labelName, environmentName, ifNoneMatch, xWSO2Tenant, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for apisApiIdGet
      * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
      * @param xWSO2Tenant For cross-tenant invocations, this is used to specify the tenant domain, where the resource need to be   retirieved from.  (optional)

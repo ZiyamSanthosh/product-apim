@@ -4,6 +4,7 @@ All URIs are relative to *https://apis.wso2.com/api/am/store/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apisApiIdAsyncapiGet**](ApIsApi.md#apisApiIdAsyncapiGet) | **GET** /apis/{apiId}/asyncapi | Get AsyncAPI definition 
 [**apisApiIdGet**](ApIsApi.md#apisApiIdGet) | **GET** /apis/{apiId} | Get details of an API 
 [**apisApiIdGraphqlSchemaGet**](ApIsApi.md#apisApiIdGraphqlSchemaGet) | **GET** /apis/{apiId}/graphql-schema | Get graphQL definition 
 [**apisApiIdSubscriptionPoliciesGet**](ApIsApi.md#apisApiIdSubscriptionPoliciesGet) | **GET** /apis/{apiId}/subscription-policies | Get details of the subscription throttling policies of an API 
@@ -12,6 +13,67 @@ Method | HTTP request | Description
 [**apisGet**](ApIsApi.md#apisGet) | **GET** /apis | Retrieve/Search APIs 
 [**getWSDLOfAPI**](ApIsApi.md#getWSDLOfAPI) | **GET** /apis/{apiId}/wsdl | Get API WSDL definition
 
+
+<a name="apisApiIdAsyncapiGet"></a>
+# **apisApiIdAsyncapiGet**
+> String apisApiIdAsyncapiGet(apiId, labelName, environmentName, ifNoneMatch, xWSO2Tenant)
+
+Get AsyncAPI definition 
+
+You can use this operation to retrieve the AsyncAPI definition of an API.   &#x60;X-WSO2-Tenant&#x60; header can be used to retrive the AsyncAPI definition an API of a different tenant domain. If not specified super tenant will be used. If Authorization header is present in the request, the user&#39;s tenant associated with the access token will be used.   **NOTE:**  * This operation does not require an Authorization header by default. But in order to see a restricted API&#39;s swagger definition, you need to provide Authorization header. 
+
+### Example
+```java
+// Import classes:
+//import org.wso2.am.integration.clients.store.api.ApiClient;
+//import org.wso2.am.integration.clients.store.api.ApiException;
+//import org.wso2.am.integration.clients.store.api.Configuration;
+//import org.wso2.am.integration.clients.store.api.auth.*;
+//import org.wso2.am.integration.clients.store.api.v1.ApIsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ApIsApi apiInstance = new ApIsApi();
+String apiId = "apiId_example"; // String | **API ID** consisting of the **UUID** of the API. 
+String labelName = "labelName_example"; // String | Name of the API microgateway labels 
+String environmentName = "environmentName_example"; // String | Name of the API gateway environment. 
+String ifNoneMatch = "ifNoneMatch_example"; // String | Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resourec. 
+String xWSO2Tenant = "xWSO2Tenant_example"; // String | For cross-tenant invocations, this is used to specify the tenant domain, where the resource need to be   retirieved from. 
+try {
+    String result = apiInstance.apisApiIdAsyncapiGet(apiId, labelName, environmentName, ifNoneMatch, xWSO2Tenant);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ApIsApi#apisApiIdAsyncapiGet");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **apiId** | **String**| **API ID** consisting of the **UUID** of the API.  |
+ **labelName** | **String**| Name of the API microgateway labels  | [optional]
+ **environmentName** | **String**| Name of the API gateway environment.  | [optional]
+ **ifNoneMatch** | **String**| Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resourec.  | [optional]
+ **xWSO2Tenant** | **String**| For cross-tenant invocations, this is used to specify the tenant domain, where the resource need to be   retirieved from.  | [optional]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[OAuth2Security](../README.md#OAuth2Security)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="apisApiIdGet"></a>
 # **apisApiIdGet**

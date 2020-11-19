@@ -1,0 +1,96 @@
+{
+  "id": "5f9377de-912d-4077-8cfc-8e64055aa8fd",
+  "name": "EchoServerUpdated",
+  "description": null,
+  "context": "/echo",
+  "version": "1.0",
+  "provider": "admin",
+  "lifeCycleStatus": "CREATED",
+  "wsdlInfo": null,
+  "wsdlUrl": null,
+  "responseCachingEnabled": false,
+  "cacheTimeout": 300,
+  "destinationStatsEnabled": null,
+  "hasThumbnail": null,
+  "isDefaultVersion": false,
+  "enableSchemaValidation": false,
+  "enableStore": true,
+  "type": "WS",
+  "transport": [
+    "http",
+    "https"
+  ],
+  "tags": [],
+  "policies": ["Unlimited"],
+  "apiThrottlingPolicy": "Unlimited",
+  "authorizationHeader": "Authorization",
+  "securityScheme": [
+    "oauth2",
+    "oauth_basic_auth_api_key_mandatory"
+  ],
+  "maxTps": null,
+  "visibility": "PUBLIC",
+  "visibleRoles": [],
+  "visibleTenants": [],
+  "endpointSecurity": null,
+  "gatewayEnvironments": [
+    "Production and Sandbox"
+  ],
+  "labels": [],
+  "mediationPolicies": [],
+  "subscriptionAvailability": "CURRENT_TENANT",
+  "subscriptionAvailableTenants": [],
+  "additionalProperties": {},
+  "monetization": null,
+  "accessControl": "NONE",
+  "accessControlRoles": [],
+  "businessInformation": {
+    "businessOwner": null,
+    "businessOwnerEmail": null,
+    "technicalOwner": null,
+    "technicalOwnerEmail": null
+  },
+  "corsConfiguration": {
+    "corsConfigurationEnabled": false,
+    "accessControlAllowOrigins": [
+      "*"
+    ],
+    "accessControlAllowCredentials": false,
+    "accessControlAllowHeaders": [
+      "authorization",
+      "Access-Control-Allow-Origin",
+      "Content-Type",
+      "SOAPAction",
+      "apikey",
+      "testKey"
+    ],
+    "accessControlAllowMethods": [
+      "GET",
+      "PUT",
+      "POST",
+      "DELETE",
+      "PATCH",
+      "OPTIONS"
+    ]
+  },
+  "workflowStatus": null,
+  "createdTime": "2020-11-17 15:23:00.984",
+  "lastUpdatedTime": "2020-11-17 15:23:01.265",
+  "endpointConfig": {
+    "endpoint_type": "ws",
+    "sandbox_endpoints": {
+      "url": "wss://echo.websocket.org:443"
+    },
+    "production_endpoints": {
+      "url": "wss://echo.websocket.org:443"
+    }
+  },
+  "endpointImplementationType": "ENDPOINT",
+  "scopes": [],
+  "operations": [],
+  "threatProtectionPolicies": null,
+  "categories": [],
+  "keyManagers": [
+    "all"
+  ]
+}

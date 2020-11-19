@@ -63,6 +63,282 @@ public class ApIsApi {
     }
 
     /**
+     * Build call for apisApiIdAsyncapiGet
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resource.  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call apisApiIdAsyncapiGetCall(String apiId, String ifNoneMatch, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/apis/{apiId}/asyncapi"
+            .replaceAll("\\{" + "apiId" + "\\}", apiClient.escapeString(apiId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (ifNoneMatch != null)
+        localVarHeaderParams.put("If-None-Match", apiClient.parameterToString(ifNoneMatch));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2Security" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call apisApiIdAsyncapiGetValidateBeforeCall(String apiId, String ifNoneMatch, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'apiId' is set
+        if (apiId == null) {
+            throw new ApiException("Missing the required parameter 'apiId' when calling apisApiIdAsyncapiGet(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiGetCall(apiId, ifNoneMatch, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get AsyncAPI definition
+     * This operation can be used to retrieve the AsyncAPI definition of an API. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resource.  (optional)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String apisApiIdAsyncapiGet(String apiId, String ifNoneMatch) throws ApiException {
+        ApiResponse<String> resp = apisApiIdAsyncapiGetWithHttpInfo(apiId, ifNoneMatch);
+        return resp.getData();
+    }
+
+    /**
+     * Get AsyncAPI definition
+     * This operation can be used to retrieve the AsyncAPI definition of an API. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resource.  (optional)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> apisApiIdAsyncapiGetWithHttpInfo(String apiId, String ifNoneMatch) throws ApiException {
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiGetValidateBeforeCall(apiId, ifNoneMatch, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get AsyncAPI definition (asynchronously)
+     * This operation can be used to retrieve the AsyncAPI definition of an API. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param ifNoneMatch Validator for conditional requests; based on the ETag of the formerly retrieved variant of the resource.  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call apisApiIdAsyncapiGetAsync(String apiId, String ifNoneMatch, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiGetValidateBeforeCall(apiId, ifNoneMatch, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for apisApiIdAsyncapiPut
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param apiDefinition AsyncAPI definition of the API (optional)
+     * @param url AsyncAPI definition URL of the API (optional)
+     * @param file AsyncAPI definition as a file (optional)
+     * @param ifMatch Validator for conditional requests; based on ETag.  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call apisApiIdAsyncapiPutCall(String apiId, String apiDefinition, String url, File file, String ifMatch, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/apis/{apiId}/asyncapi"
+            .replaceAll("\\{" + "apiId" + "\\}", apiClient.escapeString(apiId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (ifMatch != null)
+        localVarHeaderParams.put("If-Match", apiClient.parameterToString(ifMatch));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (apiDefinition != null)
+        localVarFormParams.put("apiDefinition", apiDefinition);
+        if (url != null)
+        localVarFormParams.put("url", url);
+        if (file != null)
+        localVarFormParams.put("file", file);
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2Security" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call apisApiIdAsyncapiPutValidateBeforeCall(String apiId, String apiDefinition, String url, File file, String ifMatch, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'apiId' is set
+        if (apiId == null) {
+            throw new ApiException("Missing the required parameter 'apiId' when calling apisApiIdAsyncapiPut(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiPutCall(apiId, apiDefinition, url, file, ifMatch, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Update AsyncAPI definition
+     * This operation can be used to update the AsyncAPI definition of an existing API. AsyncAPI definition to be updated is passed as a form data parameter &#39;apiDefinition&#39;. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param apiDefinition AsyncAPI definition of the API (optional)
+     * @param url AsyncAPI definition URL of the API (optional)
+     * @param file AsyncAPI definition as a file (optional)
+     * @param ifMatch Validator for conditional requests; based on ETag.  (optional)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String apisApiIdAsyncapiPut(String apiId, String apiDefinition, String url, File file, String ifMatch) throws ApiException {
+        ApiResponse<String> resp = apisApiIdAsyncapiPutWithHttpInfo(apiId, apiDefinition, url, file, ifMatch);
+        return resp.getData();
+    }
+
+    /**
+     * Update AsyncAPI definition
+     * This operation can be used to update the AsyncAPI definition of an existing API. AsyncAPI definition to be updated is passed as a form data parameter &#39;apiDefinition&#39;. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param apiDefinition AsyncAPI definition of the API (optional)
+     * @param url AsyncAPI definition URL of the API (optional)
+     * @param file AsyncAPI definition as a file (optional)
+     * @param ifMatch Validator for conditional requests; based on ETag.  (optional)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> apisApiIdAsyncapiPutWithHttpInfo(String apiId, String apiDefinition, String url, File file, String ifMatch) throws ApiException {
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiPutValidateBeforeCall(apiId, apiDefinition, url, file, ifMatch, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Update AsyncAPI definition (asynchronously)
+     * This operation can be used to update the AsyncAPI definition of an existing API. AsyncAPI definition to be updated is passed as a form data parameter &#39;apiDefinition&#39;. 
+     * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
+     * @param apiDefinition AsyncAPI definition of the API (optional)
+     * @param url AsyncAPI definition URL of the API (optional)
+     * @param file AsyncAPI definition as a file (optional)
+     * @param ifMatch Validator for conditional requests; based on ETag.  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call apisApiIdAsyncapiPutAsync(String apiId, String apiDefinition, String url, File file, String ifMatch, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = apisApiIdAsyncapiPutValidateBeforeCall(apiId, apiDefinition, url, file, ifMatch, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for apisApiIdDelete
      * @param apiId **API ID** consisting of the **UUID** of the API.  (required)
      * @param ifMatch Validator for conditional requests; based on ETag.  (optional)
@@ -2202,6 +2478,137 @@ public class ApIsApi {
 
         com.squareup.okhttp.Call call = getWSDLOfAPIValidateBeforeCall(apiId, ifNoneMatch, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for importAsyncAPISpecification
+     * @param file Definition to upload as a file (optional)
+     * @param url Definition url (optional)
+     * @param additionalProperties Additional attributes specified as a stringified JSON with API&#39;s schema (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call importAsyncAPISpecificationCall(File file, String url, String additionalProperties, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/apis/import-asyncapi";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (file != null)
+        localVarFormParams.put("file", file);
+        if (url != null)
+        localVarFormParams.put("url", url);
+        if (additionalProperties != null)
+        localVarFormParams.put("additionalProperties", additionalProperties);
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2Security" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call importAsyncAPISpecificationValidateBeforeCall(File file, String url, String additionalProperties, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+
+        com.squareup.okhttp.Call call = importAsyncAPISpecificationCall(file, url, additionalProperties, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * import an AsyncAPI Specification
+     * This operation can be used to create and API from the AsyncAPI Specification. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition. Specify additionalProperties with **at least** API&#39;s name, version, context and endpointConfig.
+     * @param file Definition to upload as a file (optional)
+     * @param url Definition url (optional)
+     * @param additionalProperties Additional attributes specified as a stringified JSON with API&#39;s schema (optional)
+     * @return APIDTO
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public APIDTO importAsyncAPISpecification(File file, String url, String additionalProperties) throws ApiException {
+        ApiResponse<APIDTO> resp = importAsyncAPISpecificationWithHttpInfo(file, url, additionalProperties);
+        return resp.getData();
+    }
+
+    /**
+     * import an AsyncAPI Specification
+     * This operation can be used to create and API from the AsyncAPI Specification. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition. Specify additionalProperties with **at least** API&#39;s name, version, context and endpointConfig.
+     * @param file Definition to upload as a file (optional)
+     * @param url Definition url (optional)
+     * @param additionalProperties Additional attributes specified as a stringified JSON with API&#39;s schema (optional)
+     * @return ApiResponse&lt;APIDTO&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<APIDTO> importAsyncAPISpecificationWithHttpInfo(File file, String url, String additionalProperties) throws ApiException {
+        com.squareup.okhttp.Call call = importAsyncAPISpecificationValidateBeforeCall(file, url, additionalProperties, null, null);
+        Type localVarReturnType = new TypeToken<APIDTO>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * import an AsyncAPI Specification (asynchronously)
+     * This operation can be used to create and API from the AsyncAPI Specification. Provide either &#39;url&#39; or &#39;file&#39; to specify the definition. Specify additionalProperties with **at least** API&#39;s name, version, context and endpointConfig.
+     * @param file Definition to upload as a file (optional)
+     * @param url Definition url (optional)
+     * @param additionalProperties Additional attributes specified as a stringified JSON with API&#39;s schema (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call importAsyncAPISpecificationAsync(File file, String url, String additionalProperties, final ApiCallback<APIDTO> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = importAsyncAPISpecificationValidateBeforeCall(file, url, additionalProperties, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<APIDTO>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
