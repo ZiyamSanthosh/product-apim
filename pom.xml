@@ -1225,15 +1225,14 @@
                 <version>${project.parent.version}</version>
             </dependency>
             <dependency>
-<<<<<<< HEAD
                 <groupId>io.apicurio</groupId>
                 <artifactId>apicurio-data-models</artifactId>
                 <version>1.1.5</version>
-=======
+            </dependency>
+            <dependency>
                 <groupId>org.wso2.orbit.org.opensaml</groupId>
                 <artifactId>opensaml</artifactId>
                 <version>${opensaml2.wso2.version}</version>
->>>>>>> upstream/master
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -1245,11 +1244,7 @@
         <carbon.analytics.common.version>5.2.27</carbon.analytics.common.version>
 
         <!-- APIM Component Version -->
-<<<<<<< HEAD
-        <carbon.apimgt.version>6.8.57-SNAPSHOT</carbon.apimgt.version>
-=======
-        <carbon.apimgt.version>6.8.89</carbon.apimgt.version>
->>>>>>> upstream/master
+        <carbon.apimgt.version>6.8.96-SNAPSHOT</carbon.apimgt.version>
         <carbon.apimgt.imp.pkg.version>[6.5.0, 7.0.0)</carbon.apimgt.imp.pkg.version>
 
         <!-- Carbon Registry -->

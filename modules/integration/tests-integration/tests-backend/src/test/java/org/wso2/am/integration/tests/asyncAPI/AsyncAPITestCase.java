@@ -101,8 +101,9 @@ public class AsyncAPITestCase extends APIMIntegrationBaseTest {
         JSONObject additionalPropertiesObj = new JSONObject(additionalProperties);
         additionalPropertiesObj.put("provider", user.getUserName());
 
+        //test case for file import
         File file = getTempFileWithContent(originalDefinition);
-        APIDTO apidto = restAPIPublisher.importAsyncAPIDefinition(file, additionalPropertiesObj.toString());
+        APIDTO apidto = restAPIPublisher.importAsyncAPIDefinition(null, file, additionalPropertiesObj.toString());
         apiImportId = apidto.getId();
 
         restAPIPublisher.changeAPILifeCycleStatus(apiImportId, Constants.PUBLISHED);
@@ -115,6 +116,21 @@ public class AsyncAPITestCase extends APIMIntegrationBaseTest {
 
         AsyncAPIUtils.validateUpdatedDefinitionForPublisher(originalDefinition, publisherDefinition);
         AsyncAPIUtils.validateUpdatedDefinitionForStore(originalDefinition, storeDefinition);
+
+        //validating a definition which contains errors
+        String originalDefinitionWithError = IOUtils.toString(
+                getClass().getClassLoader().getResourceAsStream(resourcePath + "AsyncAPI_import_withErrors.json"),
+                "UTF-8");
+        validateAsyncAPIDefinitionWithErrors(originalDefinitionWithError);
+
+        //test case for URL import
+        String additionalProperties2 = IOUtils.toString(
+                getClass().getClassLoader().getResourceAsStream(resourcePath + "additionalProperties2.json"),
+                "UTF-8");
+        JSONObject additionalPropertiesObj2 = new JSONObject(additionalProperties2);
+        additionalPropertiesObj2.put("provider", user.getUserName());
+        String url = "https://raw.githubusercontent.com/ZiyamSanthosh/AsyncAPI_WebSocket_Example/main/SampleWebSocket.yml";
+        APIDTO apidto2 = restAPIPublisher.importAsyncAPIDefinition(url, null, additionalPropertiesObj2.toString());
     }
 
     private void testUpdatedAsyncAPIDefinitionInPublisher(APIDTO apidto, String oasVersion) throws Exception {
@@ -131,6 +147,12 @@ public class AsyncAPITestCase extends APIMIntegrationBaseTest {
         File file = getTempFileWithContent(asyncAPIDefinition);
         AsyncAPISpecificationValidationResponseDTO responseDTO = restAPIPublisher.validateAsyncAPIDefinition(file);
         Assert.assertTrue(responseDTO.isIsValid());
+    }
+
+    private void validateAsyncAPIDefinitionWithErrors(String asyncAPIDefinition) throws Exception {
+        File file = getTempFileWithContent(asyncAPIDefinition);
+        AsyncAPISpecificationValidationResponseDTO responseDTO = restAPIPublisher.validateAsyncAPIDefinition(file);
+        Assert.assertFalse(responseDTO.isIsValid());
     }
 
     private File getTempFileWithContent(String asyncAPIDefinition) throws Exception {

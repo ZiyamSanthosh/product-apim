@@ -74,8 +74,6 @@
     ]
   },
   "workflowStatus": null,
-  "createdTime": "2020-11-17 15:23:00.984",
-  "lastUpdatedTime": "2020-11-17 15:23:01.265",
   "endpointConfig": {
     "endpoint_type": "ws",
     "sandbox_endpoints": {

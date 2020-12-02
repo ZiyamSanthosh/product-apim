@@ -1,0 +1,16 @@
+{
+  "name":"EchoServer3",
+  "version":"1.0",
+  "context":"/echo3",
+  "policies":["Unlimited"],
+  "endpointConfig":{
+    "endpoint_type":"ws",
+    "sandbox_endpoints":{
+      "url":"wss://echo.websocket.org:443"
+    },
+    "production_endpoints":{
+      "url":"wss://echo.websocket.org:443"
+    }
+  },
+  "gatewayEnvironments":["Production and Sandbox"]
+}

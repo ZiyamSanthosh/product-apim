@@ -1,5 +1,5 @@
 {
-  "asyncapi": "2.0.0",
+  "syncapi": "2.0.0",
   "info": {
     "title": "Echo Server 2",
     "version": "1.0"

@@ -251,7 +251,7 @@ public class RestAPIPublisherImpl {
 
     public APIDTO addAPI(APIDTO apidto, String osVersion) throws ApiException {
         ApiResponse<APIDTO> httpInfo = apIsApi.apisPostWithHttpInfo(apidto, osVersion);
-        //Assert.assertEquals(201, httpInfo.getStatusCode());
+        Assert.assertEquals(201, httpInfo.getStatusCode());
         return httpInfo.getData();
     }
 
@@ -1239,8 +1239,13 @@ public class RestAPIPublisherImpl {
         return apiResponse.getData();
     }
 
-    public APIDTO importAsyncAPIDefinition(File file, String properties) throws ApiException {
-        ApiResponse<APIDTO> apidtoApiResponse = apIsApi.importAsyncAPISpecificationWithHttpInfo(file, null, properties);
+    public APIDTO importAsyncAPIDefinition(String url, File file, String properties) throws ApiException {
+        ApiResponse<APIDTO> apidtoApiResponse;
+        if (url != null) {
+            apidtoApiResponse = apIsApi.importAsyncAPISpecificationWithHttpInfo(null, url, properties);
+        } else {
+            apidtoApiResponse = apIsApi.importAsyncAPISpecificationWithHttpInfo(file, null, properties);
+        }
         Assert.assertEquals(HttpStatus.SC_CREATED, apidtoApiResponse.getStatusCode());
         return apidtoApiResponse.getData();
     }

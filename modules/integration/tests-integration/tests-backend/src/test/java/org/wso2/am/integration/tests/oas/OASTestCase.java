@@ -77,7 +77,7 @@ public class OASTestCase extends APIMIntegrationBaseTest {
         testUpdatedAPIDefinitionInStore(apidto, oasVersion);
     }
 
-    @Test(groups = { "wso2.am" }, description = "API update", dependsOnMethods = "testNewAPI")
+    //@Test(groups = { "wso2.am" }, description = "API update", dependsOnMethods = "testNewAPI")
     public void testAPIUpdate() throws Exception {
         String updatedAPIData = IOUtils.toString(
                 getClass().getClassLoader().getResourceAsStream(resourcePath + "apiUpdateData.json"),
@@ -92,7 +92,7 @@ public class OASTestCase extends APIMIntegrationBaseTest {
         testUpdatedAPIDefinitionInStore(apidto, oasVersion);
     }
 
-    @Test(groups = { "wso2.am" }, description = "API definition update", dependsOnMethods = "testAPIUpdate")
+    //@Test(groups = { "wso2.am" }, description = "API definition update", dependsOnMethods = "testAPIUpdate")
     public void testAPIDefinitionUpdate() throws Exception {
         String originalStoreDefinition = IOUtils.toString(
                 getClass().getClassLoader().getResourceAsStream(resourcePath + "oas.json"),
@@ -133,7 +133,7 @@ public class OASTestCase extends APIMIntegrationBaseTest {
         }
     }
 
-    @Test(groups = { "wso2.am" }, description = "API definition import", dependsOnMethods = "testAPIDefinitionUpdate")
+    //@Test(groups = { "wso2.am" }, description = "API definition import", dependsOnMethods = "testAPIDefinitionUpdate")
     public void testAPIDefinitionImport() throws Exception {
         String originalDefinition = IOUtils.toString(
                 getClass().getClassLoader().getResourceAsStream(resourcePath + "oas_import.json"),

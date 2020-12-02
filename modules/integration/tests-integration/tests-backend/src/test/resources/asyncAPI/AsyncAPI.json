@@ -12,21 +12,6 @@
   },
   "channels": {
     "/echo": {
-      "bindings": {
-        "ws": {
-          "query": {
-            "type": "object",
-            "properties": {
-              "times": {
-                "type": "integer",
-                "description": "How many times the message should be echoed.",
-                "minimum": 1
-              }
-            }
-          },
-          "bindingVersion": "0.1.0"
-        }
-      },
       "subscribe": {
         "operationId": "onEcho",
         "message": {
